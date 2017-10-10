@@ -1,16 +1,13 @@
 package com.android.cloud.http.observer;
-import com.android.cloud.api.apiexpand.ApiType;
 import com.android.cloud.http.function.HttpResponseFunction;
 import com.android.cloud.http.function.ServerReponseFunction;
 import com.trello.rxlifecycle2.LifecycleProvider;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.android.ActivityEvent;
-import java.util.Map;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-import static com.android.cloud.api.apiexpand.ObservableApi.getObservableByType;
 
 /**
  * Created by radio on 2017/9/20.

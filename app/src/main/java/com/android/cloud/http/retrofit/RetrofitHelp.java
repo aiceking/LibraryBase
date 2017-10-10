@@ -3,11 +3,8 @@ package com.android.cloud.http.retrofit;
 import android.annotation.SuppressLint;
 
 import com.android.cloud.help.LogHelp;
-import com.android.cloud.api.apiexpand.NetApiService;
 import com.android.cloud.http.gsonhelp.GsonHelp;
 import com.android.cloud.api.urlhelp.UrlHelp;
-import com.android.cloud.libraryinit.BaseLibraryInitHelp;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.GeneralSecurityException;
