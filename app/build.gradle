@@ -1,0 +1,66 @@
+//apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
+apply plugin: 'android-apt'
+apply plugin: 'com.jakewharton.butterknife'
+apply plugin:'com.github.dcendents.android-maven'
+group='com.github.NoEndToLF'
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
+    defaultConfig {
+//        applicationId "com.android.cloud"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+//在开发过程中,有的时候引入了多个三方库.在调用的时候会出现版本对应不上的原因.就会出现如标题的异常.解决的办法就是在你的
+configurations.all {
+
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '25.3.0'
+            }
+        }
+    }
+}
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support:design:26.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.mxn.soul:flowingdrawer-core:2.0.0'/*侧滑栏*/
+    compile'com.jakewharton:butterknife:8.4.0'     /*注解*/
+    apt'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.lzy.widget:imagepicker:0.6.1'    /*图片选择器*/
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'    /*图片处理*/
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1' /*RxAndroid*/
+    compile 'io.reactivex.rxjava2:rxjava:2.1.0'    /*RxJava*/
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'    /*retrofit2*/
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'    /*okHttp的log*/
+    compile 'com.trello.rxlifecycle2:rxlifecycle:2.1.0'    /*Rx生命周期管理*/
+    compile 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'    /*Rx生命周期管理*/
+    compile 'me.jessyan:retrofit-url-manager:1.0.5'    /*切换BaseUrl,满足多BaseUrl的需求*/
+    compile 'com.code19.library:library:0.1.4'    /*工具类*/
+    compile 'top.zibin:Luban:1.1.3'    /*图片压缩*/
+    compile 'com.orhanobut:logger:2.1.1'    /*log信息*/
+    testCompile 'junit:junit:4.12'
+    compile 'com.victor:lib:1.0.4'    /*加载动画View*/
+    compile 'com.contrarywind:Android-PickerView:3.2.6'    //时间选择器
+}

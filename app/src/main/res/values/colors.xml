@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#478ED0</color>
+    <color name="white">#ffffff</color>
+    <color name="dialog_loading_text">#616161</color>
+    <color name="dialog_loading_view">#5677fc</color>
+    <color name="qianhui">#e0e0e0</color>
+    <color name="blue">#478ED0</color>
+    <color name="black">#000000</color>
+    <color name="editline">#478ED0</color>
+</resources>
