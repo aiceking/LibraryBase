@@ -11,17 +11,17 @@ import com.orhanobut.logger.Logger;
 
 public class LogHelp {
     public static void showLog(String tag,String message){
-        if (BaseLibraryInitHelp.getInstance().isDebug()){
+        if (BaseLibraryInitHelp.getInstance().isLog()){
             Log.i(tag,message);
         }
     }
     public static void showLog(String message){
-        if (BaseLibraryInitHelp.getInstance().isDebug()){
+        if (BaseLibraryInitHelp.getInstance().isLog()){
             Logger.i(message);
         }
     }
     public static void showJsonLog(String message){
-        if (BaseLibraryInitHelp.getInstance().isDebug()){
+        if (BaseLibraryInitHelp.getInstance().isLog()){
             Logger.json(message);
         }
     }

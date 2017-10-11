@@ -52,7 +52,7 @@ public class RetrofitHelp {
     private RetrofitHelp(){
         initRetrofitAndNetApi();
     }
-    private void initRetrofitAndNetApi() {
+    public void initRetrofitAndNetApi() {
          retrofit = new Retrofit.Builder()
                 .client(initOkHttpClient())
                 .baseUrl(UrlHelp.getBaseUrl())
@@ -60,7 +60,7 @@ public class RetrofitHelp {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
-    private OkHttpClient initOkHttpClient() {
+    public OkHttpClient initOkHttpClient() {
         OkHttpClient.Builder mBuilder = new OkHttpClient.Builder();
         if (BaseLibraryInitHelp.getInstance().isHasCer()){
           //  设置https证书

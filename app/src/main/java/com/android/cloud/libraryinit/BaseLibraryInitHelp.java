@@ -1,6 +1,8 @@
 package com.android.cloud.libraryinit;
 
 import android.content.Context;
+
+import com.android.cloud.help.SharedPreferencesHelp;
 import com.android.cloud.http.retrofit.RetrofitHelp;
 import com.android.cloud.http.uploadimghelp.UpLoadImgService;
 import com.lzy.imagepicker.ImagePicker;
@@ -15,6 +17,10 @@ public class BaseLibraryInitHelp<T> {
 private static BaseLibraryInitHelp oncreateDoingHelp;
     private Context context;
     private boolean isDebug;
+
+
+
+    private boolean isLog;
     private String ceshiUrl;
     private String shengchanUrl;
     private String ceshiCerName;
@@ -66,6 +72,7 @@ private static BaseLibraryInitHelp oncreateDoingHelp;
     }
     public void setDebug(boolean debug) {
         isDebug = debug;
+        RetrofitHelp.getInstance().initRetrofitAndNetApi();//重置Retrofit
     }
     public void setImagePickerLoader(){
         ImagePicker imagePicker = ImagePicker.getInstance();
@@ -80,8 +87,12 @@ private static BaseLibraryInitHelp oncreateDoingHelp;
 //        imagePicker.setOutPutX(1000);//保存文件的宽度。单位像素
 //        imagePicker.setOutPutY(1000);//保存文件的高度。单位像素
     }
-    public void setLogger(){
+    public void setLogger(boolean isLog){
+        this.isLog=isLog;
         Logger.addLogAdapter(new AndroidLogAdapter());
+    }
+    public boolean isLog() {
+        return isLog;
     }
     public void setApiService(final Class<T> service){
         netService=  RetrofitHelp.getInstance().getRetrofit().create(service);
