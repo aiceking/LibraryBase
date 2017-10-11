@@ -82,10 +82,10 @@ private static BaseLibraryInitHelp oncreateDoingHelp;
 //        imagePicker.setOutPutX(1000);//保存文件的宽度。单位像素
 //        imagePicker.setOutPutY(1000);//保存文件的高度。单位像素
     }
-    public void initLogger(){
+    public void setLogger(){
         Logger.addLogAdapter(new AndroidLogAdapter());
     }
-    public void initApiService(final Class<T> service){
+    public void setApiService(final Class<T> service){
         netService=  RetrofitHelp.getInstance().getRetrofit().create(service);
     }
     public void setBaseUrl(String ceshiUrl,String shengchanUrl){
