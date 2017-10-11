@@ -50,7 +50,6 @@ public class RetrofitHelp {
     }
     private Retrofit retrofit;
     private RetrofitHelp(){
-        initRetrofitAndNetApi();
     }
     public void initRetrofitAndNetApi() {
          retrofit = new Retrofit.Builder()
@@ -102,9 +101,6 @@ public class RetrofitHelp {
                 .addInterceptor(logging)
                 .build();
         return client;
-    }
-    public void reSet(){
-        initRetrofitAndNetApi();
     }
     public static RetrofitHelp getInstance(){
         if (retrofitHelp==null){
