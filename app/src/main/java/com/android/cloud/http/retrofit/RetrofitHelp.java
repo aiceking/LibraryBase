@@ -59,7 +59,7 @@ public class RetrofitHelp {
                 .addConverterFactory(GsonConverterFactory.create(GsonHelp.getGson()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
-        LogHelp.showLog("baseUrl==="+UrlHelp.getBaseUrl());
+//        LogHelp.showLog("baseUrl==="+UrlHelp.getBaseUrl());
     }
     public OkHttpClient initOkHttpClient() {
         OkHttpClient.Builder mBuilder = new OkHttpClient.Builder();
@@ -69,7 +69,7 @@ public class RetrofitHelp {
         SSLSocketFactory sslSocketFactory = null;
         try {
             String cer = BaseLibraryInitHelp.getInstance().isDebug() ? BaseLibraryInitHelp.getInstance().getCeshiCerName() : BaseLibraryInitHelp.getInstance().getShengchanCerName();
-            LogHelp.showLog("cer==="+cer);
+//            LogHelp.showLog("cer==="+cer);
             InputStream inputStream = BaseLibraryInitHelp.getInstance().getContext().getAssets().open(cer); // 得到证书的输入流
             trustManager = trustManagerForCertificates(inputStream);
             SSLContext sslContext = SSLContext.getInstance("TLS");
