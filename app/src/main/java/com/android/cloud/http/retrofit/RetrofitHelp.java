@@ -50,6 +50,7 @@ public class RetrofitHelp {
     }
     private Retrofit retrofit;
     private RetrofitHelp(){
+        initRetrofitAndNetApi();
     }
     public void initRetrofitAndNetApi() {
          retrofit = new Retrofit.Builder()

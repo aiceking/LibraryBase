@@ -69,7 +69,11 @@ private static BaseLibraryInitHelp oncreateDoingHelp;
     }
     public void setDebug(boolean debug) {
         isDebug = debug;
+    }
+    public void changeDebug(boolean debug,final Class<T> service){
         RetrofitHelp.getInstance().initRetrofitAndNetApi();
+        netService=  RetrofitHelp.getInstance().getRetrofit().create(service);
+        setUpLoadImgService();
     }
     public void setImagePickerLoader(){
         ImagePicker imagePicker = ImagePicker.getInstance();
