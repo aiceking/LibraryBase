@@ -71,6 +71,7 @@ private static BaseLibraryInitHelp oncreateDoingHelp;
         isDebug = debug;
     }
     public void changeDebug(boolean debug,final Class<T> service){
+        isDebug = debug;
         RetrofitHelp.getInstance().initRetrofitAndNetApi();
         netService=  RetrofitHelp.getInstance().getRetrofit().create(service);
         setUpLoadImgService();
