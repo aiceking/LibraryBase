@@ -5,6 +5,8 @@ import android.annotation.SuppressLint;
 import com.android.cloud.help.LogHelp;
 import com.android.cloud.http.gsonhelp.GsonHelp;
 import com.android.cloud.api.urlhelp.UrlHelp;
+import com.android.cloud.libraryinit.BaseLibraryInitHelp;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.GeneralSecurityException;
@@ -60,27 +62,28 @@ public class RetrofitHelp {
     }
     private OkHttpClient initOkHttpClient() {
         OkHttpClient.Builder mBuilder = new OkHttpClient.Builder();
+        if (BaseLibraryInitHelp.getInstance().isHasCer()){
+          //  设置https证书
+        X509TrustManager trustManager = null;
+        SSLSocketFactory sslSocketFactory = null;
+        try {
+            String cer = BaseLibraryInitHelp.getInstance().isDebug() ? BaseLibraryInitHelp.getInstance().getCeshiCerName() : BaseLibraryInitHelp.getInstance().getShengchanCerName();
+            InputStream inputStream = BaseLibraryInitHelp.getInstance().getContext().getAssets().open(cer); // 得到证书的输入流
+            trustManager = trustManagerForCertificates(inputStream);
+            SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, new TrustManager[] { trustManager }, null);
+            sslSocketFactory = sslContext.getSocketFactory();
+            //设置证书
+            mBuilder.sslSocketFactory(sslSocketFactory, trustManager);
+        } catch (GeneralSecurityException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        }else{
         mBuilder.sslSocketFactory(createSSLSocketFactory());
         mBuilder.hostnameVerifier(new TrustAllHostnameVerifier());
-//        //设置https证书
-//        X509TrustManager trustManager = null;
-//        SSLSocketFactory sslSocketFactory = null;
-//        try {
-//            String cer = BaseLibraryInitHelp.getInstance().isDebug() ? BaseLibraryInitHelp.getInstance().getCeshiCerName() : BaseLibraryInitHelp.getInstance().getShengchanCerName();
-//            InputStream inputStream = BaseLibraryInitHelp.getInstance().getContext().getAssets().open(cer); // 得到证书的输入流
-//            trustManager = trustManagerForCertificates(inputStream);
-//            SSLContext sslContext = SSLContext.getInstance("TLS");
-//            sslContext.init(null, new TrustManager[] { trustManager }, null);
-//            sslSocketFactory = sslContext.getSocketFactory();
-//            //设置证书
-//            mBuilder.sslSocketFactory(sslSocketFactory, trustManager);
-//        } catch (GeneralSecurityException e) {
-//            throw new RuntimeException(e);
-//        } catch (IOException e){
-//            e.printStackTrace();
-//            mBuilder.sslSocketFactory(createSSLSocketFactory());
-//            mBuilder.hostnameVerifier(new TrustAllHostnameVerifier());
-//        }
+        }
         //开启Log
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
