@@ -79,6 +79,7 @@ public class RetrofitHelp {
             throw new RuntimeException(e);
         } catch (IOException e){
             e.printStackTrace();
+
         }
         }else{
         mBuilder.sslSocketFactory(createSSLSocketFactory());
@@ -101,6 +102,10 @@ public class RetrofitHelp {
                 .addInterceptor(logging)
                 .build();
         return client;
+    }
+    public void reSet(){
+        retrofitHelp=null;
+        retrofit=null;
     }
     public static RetrofitHelp getInstance(){
         if (retrofitHelp==null){

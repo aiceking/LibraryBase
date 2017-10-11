@@ -2,6 +2,7 @@ package com.android.cloud.help;
 
 import android.util.Log;
 
+import com.android.cloud.http.retrofit.RetrofitHelp;
 import com.android.cloud.libraryinit.BaseLibraryInitHelp;
 import com.orhanobut.logger.Logger;
 
