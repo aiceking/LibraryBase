@@ -104,8 +104,7 @@ public class RetrofitHelp {
         return client;
     }
     public void reSet(){
-        retrofitHelp=null;
-        retrofit=null;
+        initRetrofitAndNetApi();
     }
     public static RetrofitHelp getInstance(){
         if (retrofitHelp==null){

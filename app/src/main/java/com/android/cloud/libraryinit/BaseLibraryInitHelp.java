@@ -17,9 +17,6 @@ public class BaseLibraryInitHelp<T> {
 private static BaseLibraryInitHelp oncreateDoingHelp;
     private Context context;
     private boolean isDebug;
-
-
-
     private boolean isLog;
     private String ceshiUrl;
     private String shengchanUrl;
@@ -73,7 +70,6 @@ private static BaseLibraryInitHelp oncreateDoingHelp;
     public void setDebug(boolean debug) {
         isDebug = debug;
         RetrofitHelp.getInstance().reSet();
-        RetrofitHelp.getInstance();
     }
     public void setImagePickerLoader(){
         ImagePicker imagePicker = ImagePicker.getInstance();
