@@ -39,7 +39,7 @@ configurations.all {
     }
 }
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    //compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -47,8 +47,6 @@ dependencies {
     compile 'com.android.support:design:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.mxn.soul:flowingdrawer-core:2.0.0'/*侧滑栏*/
-//    compile'com.jakewharton:butterknife:8.4.0'     /*注解*/
-//    apt'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'com.lzy.widget:imagepicker:0.6.1'    /*图片选择器*/
@@ -69,6 +67,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.victor:lib:1.0.4'    /*加载动画View*/
     compile 'com.contrarywind:Android-PickerView:3.2.6'    //时间选择器
-    compile 'com.alibaba:arouter-api:1.2.2'//跨module跳转
+    provided 'com.alibaba:arouter-api:1.2.2'//跨module跳转
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.3'
 }
