@@ -1,10 +1,7 @@
 package com.android.cloud.libraryinit;
 
-import android.app.Application;
 import android.content.Context;
 
-import com.alibaba.android.arouter.launcher.ARouter;
-import com.android.cloud.help.SharedPreferencesHelp;
 import com.android.cloud.http.retrofit.RetrofitHelp;
 import com.android.cloud.http.uploadimghelp.UpLoadImgService;
 import com.lzy.imagepicker.ImagePicker;
@@ -114,12 +111,5 @@ private static BaseLibraryInitHelp oncreateDoingHelp;
     }
     public boolean isHasCer() {
         return isHasCer;
-    }
-    public void setARouter(Application application){
-        if (isLog()){
-            ARouter.openLog();     // 打印日志
-            ARouter.openDebug();
-        }
-        ARouter.init(application);
     }
 }
