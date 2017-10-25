@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="135dp"
-    android:layout_height="135dp"
+    android:layout_height="118dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/dialog_loading_bg"
@@ -9,9 +9,9 @@
     <com.victor.loading.rotate.RotateLoading
         android:layout_marginTop="10dp"
         android:id="@+id/rotateloading"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        app:loading_width="7.5dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:loading_width="7dp"
         app:loading_color="@color/dialog_loading_view"
         android:layout_centerInParent="true"/>
     <TextView
@@ -21,6 +21,7 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:layout_height="wrap_content"
+        android:text="加载中..."
         android:textSize="16sp"
         android:textColor="@color/dialog_loading_text"
         android:id="@+id/tv_diloag_title"/>
