@@ -7,7 +7,7 @@
     <color name="dialog_loading_text">#616161</color>
     <color name="dialog_loading_view">#5677fc</color>
     <color name="qianhui">#e0e0e0</color>
-    <color name="blue">#006EFF</color>
+    <color name="blue">#4aa1fe</color>
     <color name="black">#000000</color>
-    <color name="editline">#006EFF</color>
+    <color name="editline">#4aa1fe</color>
 </resources>
