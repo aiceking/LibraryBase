@@ -97,4 +97,7 @@ public class RetrofitHelp {
         }
         return retrofitHelp;
     }
+    public  void  changeBaseUrl(String tag,String url){
+        RetrofitUrlManager.getInstance().putDomain(tag, url);
+    }
 }
