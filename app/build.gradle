@@ -62,5 +62,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.victor:lib:1.0.4'    /*加载动画View*/
     compile 'com.contrarywind:Android-PickerView:3.2.6'    //时间选择器
-
+    compile 'com.github.NoEndToLF:UsefulDialog:1.0.1'//dialog
 }

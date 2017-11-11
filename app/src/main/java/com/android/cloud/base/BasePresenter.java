@@ -1,6 +1,5 @@
 package com.android.cloud.base;
 
-import com.android.cloud.help.DialogHelp;
 import com.android.cloud.http.httprequestlife.LifeCycleListener;
 
 import java.lang.ref.Reference;
