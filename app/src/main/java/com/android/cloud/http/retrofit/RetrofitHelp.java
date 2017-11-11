@@ -3,6 +3,7 @@ package com.android.cloud.http.retrofit;
 import android.annotation.SuppressLint;
 
 import com.android.cloud.help.LogHelp;
+import com.android.cloud.http.HttpsCerHelp.HttpsCerHelp;
 import com.android.cloud.http.gsonhelp.GsonHelp;
 import com.android.cloud.api.urlhelp.UrlHelp;
 import com.android.cloud.libraryinit.BaseLibraryInitHelp;
@@ -59,33 +60,14 @@ public class RetrofitHelp {
                 .addConverterFactory(GsonConverterFactory.create(GsonHelp.getGson()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
-//        LogHelp.showLog("baseUrl==="+UrlHelp.getBaseUrl());
     }
     public OkHttpClient initOkHttpClient() {
-        OkHttpClient.Builder mBuilder = new OkHttpClient.Builder();
-        if (BaseLibraryInitHelp.getInstance().isHasCer()){
-          //  设置https证书
-        X509TrustManager trustManager = null;
-        SSLSocketFactory sslSocketFactory = null;
-        try {
-            String cer = BaseLibraryInitHelp.getInstance().isDebug() ? BaseLibraryInitHelp.getInstance().getCeshiCerName() : BaseLibraryInitHelp.getInstance().getShengchanCerName();
-//            LogHelp.showLog("cer==="+cer);
-            InputStream inputStream = BaseLibraryInitHelp.getInstance().getContext().getAssets().open(cer); // 得到证书的输入流
-            trustManager = trustManagerForCertificates(inputStream);
-            SSLContext sslContext = SSLContext.getInstance("TLS");
-            sslContext.init(null, new TrustManager[] { trustManager }, null);
-            sslSocketFactory = sslContext.getSocketFactory();
-            //设置证书
-            mBuilder.sslSocketFactory(sslSocketFactory, trustManager);
-        } catch (GeneralSecurityException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e){
-            e.printStackTrace();
-
-        }
+        OkHttpClient.Builder mBuilder ;
+        if (BaseLibraryInitHelp.getInstance().isHasCer()) {
+            //  设置https证书
+            mBuilder = HttpsCerHelp.getClientByCer(BaseLibraryInitHelp.getInstance().getContext(), BaseLibraryInitHelp.getInstance().getCerNames());
         }else{
-        mBuilder.sslSocketFactory(createSSLSocketFactory());
-        mBuilder.hostnameVerifier(new TrustAllHostnameVerifier());
+            mBuilder = HttpsCerHelp.getClientByCer(BaseLibraryInitHelp.getInstance().getContext(), new String[]{});
         }
         //开启Log
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
@@ -114,88 +96,5 @@ public class RetrofitHelp {
             }
         }
         return retrofitHelp;
-    }
-    @SuppressLint("TrulyRandom")
-    private static SSLSocketFactory createSSLSocketFactory() {
-
-        SSLSocketFactory sSLSocketFactory = null;
-
-        try {
-            SSLContext sc = SSLContext.getInstance("TLS");
-            sc.init(null, new TrustManager[]{new TrustAllManager()},
-                    new SecureRandom());
-            sSLSocketFactory = sc.getSocketFactory();
-        } catch (Exception e) {
-        }
-
-        return sSLSocketFactory;
-    }
-
-    private static class TrustAllManager implements X509TrustManager {
-        @Override
-        public void checkClientTrusted(X509Certificate[] chain, String authType)
-                throws CertificateException {
-        }
-
-        @Override
-        public void checkServerTrusted(X509Certificate[] chain, String authType)
-
-                throws CertificateException {
-        }
-
-        @Override
-        public X509Certificate[] getAcceptedIssuers() {
-            return new X509Certificate[0];
-        }
-    }
-
-    private static class TrustAllHostnameVerifier implements HostnameVerifier {
-        @Override
-        public boolean verify(String hostname, SSLSession session) {
-            return true;
-        }
-    }
-    public  void  changeBaseUrl(String tag,String url){
-        RetrofitUrlManager.getInstance().putDomain(tag, url);
-    }
-    private X509TrustManager trustManagerForCertificates(InputStream in)
-            throws GeneralSecurityException {
-        CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
-        Collection<? extends Certificate> certificates = certificateFactory.generateCertificates(in);
-        if (certificates.isEmpty()) {
-            throw new IllegalArgumentException("expected non-empty set of trusted certificates");
-        }
-        // Put the certificates a key store.
-        char[] password = "wxy".toCharArray(); // Any password will work.
-        KeyStore keyStore = newEmptyKeyStore(password);
-        int index = 0;
-        for (Certificate certificate : certificates) {
-            String certificateAlias = Integer.toString(index++);
-            keyStore.setCertificateEntry(certificateAlias, certificate);
-        }
-        // Use it to build an X509 trust manager.
-        KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(
-                KeyManagerFactory.getDefaultAlgorithm());
-        keyManagerFactory.init(keyStore, password);
-        TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(
-                TrustManagerFactory.getDefaultAlgorithm());
-        trustManagerFactory.init(keyStore);
-        TrustManager[] trustManagers = trustManagerFactory.getTrustManagers();
-        if (trustManagers.length != 1 || !(trustManagers[0] instanceof X509TrustManager)) {
-            throw new IllegalStateException("Unexpected default trust managers:"
-                    + Arrays.toString(trustManagers));
-        }
-        return (X509TrustManager) trustManagers[0];
-    }
-
-    private KeyStore newEmptyKeyStore(char[] password) throws GeneralSecurityException {
-        try {
-            KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
-            InputStream in = null; // By convention, 'null' creates an empty key store.
-            keyStore.load(in, password);
-            return keyStore;
-        } catch (IOException e) {
-            throw new AssertionError(e);
-        }
     }
 }

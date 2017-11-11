@@ -6,6 +6,7 @@ import org.json.JSONException;
 
 import java.net.ConnectException;
 import java.net.UnknownHostException;
+import java.security.cert.CertPathValidatorException;
 import java.text.ParseException;
 
 import retrofit2.HttpException;
@@ -67,6 +68,10 @@ public class ExceptionHelp {
         }else if(e instanceof ConnectException){
             ex = new ApiException(e, Error.NETWORD_ERROR);
             ex.setDisPlayMessage("连接失败");  //均视为网络错误
+            return ex;
+        }else if (e instanceof CertPathValidatorException){
+            ex = new ApiException(e, Error.CER_ERROR);
+            ex.setDisPlayMessage("SSL证书无效");  //均视为网络错误
             return ex;
         }else {
             ex = new ApiException(e, Error.UNKNOWN);

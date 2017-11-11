@@ -19,8 +19,15 @@ private static BaseLibraryInitHelp oncreateDoingHelp;
     private boolean isLog;
     private String ceshiUrl;
     private String shengchanUrl;
-    private String ceshiCerName;
-    private String shengchanCerName;
+
+    public String[] getCerNames() {
+        return cerNames;
+    }
+
+    public void setCerNames(String[] cerNames) {
+        this.cerNames = cerNames;
+    }
+    private String []cerNames;
     private T netService;
     private boolean isHasCer;
     public UpLoadImgService getUpLoadImgService() {
@@ -41,12 +48,6 @@ private static BaseLibraryInitHelp oncreateDoingHelp;
             }
         }
         return oncreateDoingHelp;
-    }
-    public String getCeshiCerName() {
-        return ceshiCerName;
-    }
-    public String getShengchanCerName() {
-        return shengchanCerName;
     }
     public String getCeshiUrl() {
         return ceshiUrl;
@@ -101,10 +102,6 @@ private static BaseLibraryInitHelp oncreateDoingHelp;
     public void setBaseUrl(String ceshiUrl,String shengchanUrl){
         this.ceshiUrl=ceshiUrl;
         this.shengchanUrl=shengchanUrl;
-    }
-    public void setHttpsCer(String ceshiCerName,String shengchanCerName){
-        this.ceshiCerName=ceshiCerName;
-        this.shengchanCerName=shengchanCerName;
     }
     public void setHttpsCer(boolean isHasCer){
         this.isHasCer=isHasCer;
