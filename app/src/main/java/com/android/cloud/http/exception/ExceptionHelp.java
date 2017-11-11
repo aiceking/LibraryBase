@@ -10,6 +10,8 @@ import java.net.UnknownHostException;
 import java.security.cert.CertPathValidatorException;
 import java.text.ParseException;
 
+import javax.net.ssl.SSLHandshakeException;
+
 import retrofit2.HttpException;
 
 /**
@@ -71,7 +73,7 @@ public class ExceptionHelp {
             ex = new ApiException(e, Error.NETWORD_ERROR);
             ex.setDisPlayMessage("连接失败");  //均视为网络错误
             return ex;
-        }else if (e instanceof CertPathValidatorException){
+        }else if (e instanceof SSLHandshakeException){
             ex = new ApiException(e, Error.CER_ERROR);
             ex.setDisPlayMessage("SSL证书无效");  //均视为网络错误
             return ex;
