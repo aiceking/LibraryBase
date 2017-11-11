@@ -1,5 +1,6 @@
 package com.android.cloud.http.exception;
 
+import com.android.cloud.help.LogHelp;
 import com.google.gson.JsonParseException;
 
 import org.json.JSONException;
@@ -29,6 +30,7 @@ public class ExceptionHelp {
 
     public static ApiException getException(Throwable e){
         ApiException ex;
+        LogHelp.showLog("e===",e.getMessage());
         if (e instanceof HttpException){             //HTTP错误
             HttpException httpException = (HttpException) e;
             ex = new ApiException(e, Error.HTTP_ERROR);
