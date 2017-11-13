@@ -32,7 +32,6 @@ public class ExceptionHelp {
 
     public static ApiException getException(Throwable e){
         ApiException ex;
-        LogHelp.showLog("e===",e.getMessage());
         if (e instanceof HttpException){             //HTTP错误
             HttpException httpException = (HttpException) e;
             ex = new ApiException(e, Error.HTTP_ERROR);

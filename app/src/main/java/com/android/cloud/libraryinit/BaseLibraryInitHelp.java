@@ -8,6 +8,8 @@ import com.lzy.imagepicker.ImagePicker;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
+import java.util.HashMap;
+
 /**
  * Created by radio on 2017/9/13.
  */
@@ -19,11 +21,9 @@ private static BaseLibraryInitHelp oncreateDoingHelp;
     private boolean isLog;
     private String ceshiUrl;
     private String shengchanUrl;
-
     public String[] getCerNames() {
         return cerNames;
     }
-
     public void setCerNames(String[] cerNames) {
         this.cerNames = cerNames;
     }

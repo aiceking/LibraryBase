@@ -2,6 +2,7 @@ package com.android.cloud.api.responsebean;
 
 import com.google.gson.annotations.SerializedName;
 
+
 /**
  * Created by radio on 2017/9/20.
  */
