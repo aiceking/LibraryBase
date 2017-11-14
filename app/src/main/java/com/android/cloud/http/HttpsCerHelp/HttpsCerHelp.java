@@ -12,7 +12,7 @@ import okhttp3.OkHttpClient;
  */
 
 public class HttpsCerHelp {
-    public static OkHttpClient.Builder getClientByCer(Context context, String[] fileNames){
+    public static OkHttpClient.Builder getClientBuilderByCer(Context context, String[] fileNames){
         HttpsCerUtil.SSLParams sslParams;
         OkHttpClient.Builder okHttpClientBuilder;
         try {
@@ -29,5 +29,26 @@ public class HttpsCerHelp {
                     .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager);
         }
         return okHttpClientBuilder;
+    }
+    public static OkHttpClient getClientByCer(Context context,String[] fileNames){
+        HttpsCerUtil.SSLParams sslParams;
+        OkHttpClient okHttpClient;
+        try {
+            InputStream[] inputStreams=new InputStream[fileNames.length];
+            for (int i=0;i<fileNames.length;i++){
+                inputStreams[i]= context.getAssets().open(fileNames[i]);
+            }
+            sslParams = HttpsCerUtil.getSslSocketFactory(inputStreams, null, null);
+            okHttpClient = new OkHttpClient.Builder()
+                    .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
+                    .build();
+        } catch (Exception e) {
+            sslParams = HttpsCerUtil.getSslSocketFactory(null, null, null);
+            okHttpClient = new OkHttpClient.Builder()
+                    .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
+                    //其他配置
+                    .build();
+        }
+        return okHttpClient;
     }
 }

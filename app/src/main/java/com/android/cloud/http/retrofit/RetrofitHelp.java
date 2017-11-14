@@ -41,9 +41,9 @@ public class RetrofitHelp {
         OkHttpClient.Builder mBuilder ;
         if (BaseLibraryInitHelp.getInstance().isHasCer()) {
             //  设置https证书
-            mBuilder = HttpsCerHelp.getClientByCer(BaseLibraryInitHelp.getInstance().getContext(), BaseLibraryInitHelp.getInstance().getCerNames());
+            mBuilder = HttpsCerHelp.getClientBuilderByCer(BaseLibraryInitHelp.getInstance().getContext(), BaseLibraryInitHelp.getInstance().getCerNames());
         }else{
-            mBuilder = HttpsCerHelp.getClientByCer(BaseLibraryInitHelp.getInstance().getContext(), new String[]{});
+            mBuilder = HttpsCerHelp.getClientBuilderByCer(BaseLibraryInitHelp.getInstance().getContext(), new String[]{});
         }
         //开启Log
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
