@@ -1,35 +1,11 @@
 package com.android.cloud.http.retrofit;
 
-import android.annotation.SuppressLint;
-
 import com.android.cloud.help.LogHelp;
 import com.android.cloud.http.HttpsCerHelp.HttpsCerHelp;
 import com.android.cloud.http.gsonhelp.GsonHelp;
 import com.android.cloud.api.urlhelp.UrlHelp;
 import com.android.cloud.libraryinit.BaseLibraryInitHelp;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.GeneralSecurityException;
-import java.security.KeyStore;
-import java.security.SecureRandom;
-import java.security.cert.Certificate;
-import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
-import java.security.cert.X509Certificate;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.concurrent.TimeUnit;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.KeyManagerFactory;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
-import javax.net.ssl.X509TrustManager;
-
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

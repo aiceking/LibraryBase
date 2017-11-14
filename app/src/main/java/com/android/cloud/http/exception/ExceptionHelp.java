@@ -1,13 +1,11 @@
 package com.android.cloud.http.exception;
 
-import com.android.cloud.help.LogHelp;
 import com.google.gson.JsonParseException;
 
 import org.json.JSONException;
 
 import java.net.ConnectException;
 import java.net.UnknownHostException;
-import java.security.cert.CertPathValidatorException;
 import java.text.ParseException;
 
 import javax.net.ssl.SSLHandshakeException;

@@ -8,7 +8,6 @@ import com.lzy.imagepicker.ImagePicker;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
-import java.util.HashMap;
 
 /**
  * Created by radio on 2017/9/13.
