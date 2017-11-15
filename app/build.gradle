@@ -60,5 +60,5 @@ dependencies {
     compile 'com.github.NoEndToLF:UsefulDialog:1.0.2'//dialog
     compile 'com.github.NoEndToLF:ListPopWindow:1.0.6'//popwindow
     compile 'com.github.NoEndToLF:LazyBaseFragment:1.0.1'//lazyFragment
-    compile 'com.github.NoEndToLF:ImageVpShow:1.0.1'//图片浏览器
+    compile 'com.github.NoEndToLF:ImageVpShow:1.0.2'//图片浏览器
 }
