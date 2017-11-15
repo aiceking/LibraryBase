@@ -45,7 +45,7 @@ public static void getPermission(final Activity activity,final PermissionType pe
         public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
             if (PermissionRequestCode==requestCode){
             if (AndPermission.hasAlwaysDeniedPermission(activity, deniedPermissions)) {
-                Toast.makeText(activity, "您已主动拒绝权限申请，请在需要时自行在设置中授权", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "您已主动拒绝权限申请，请自行在设置中进行授权", Toast.LENGTH_SHORT).show();
             }else{
                 if (!AndPermission.hasPermission(activity,getPermissionByType(permissionType))){
                 Toast.makeText(activity, "请开启权限", Toast.LENGTH_SHORT).show();
