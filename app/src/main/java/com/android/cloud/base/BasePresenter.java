@@ -1,6 +1,7 @@
 package com.android.cloud.base;
 
 import com.android.cloud.http.httprequestlife.LifeCycleListener;
+import com.trello.rxlifecycle2.LifecycleTransformer;
 
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
@@ -14,6 +15,11 @@ public class BasePresenter<V,T> implements LifeCycleListener {
     protected V mView;
     protected Reference<T> mActivityRef;
     protected T mActivity;
+    public LifecycleTransformer getLifecycleTransformer() {
+        return lifecycleTransformer;
+    }
+
+    protected LifecycleTransformer lifecycleTransformer;
     public BasePresenter(V view, T activity) {
         attachView(view);
         attachActivity(activity);
@@ -28,6 +34,7 @@ public class BasePresenter<V,T> implements LifeCycleListener {
         if (getActivity() != null) {
             if (activity instanceof BaseActivity) {
                 ((BaseActivity) getActivity()).setOnLifeCycleListener(this);
+                lifecycleTransformer=((BaseActivity) getActivity()).bindLifecycle();
             }
         }
     }
