@@ -15,10 +15,8 @@ public abstract  class BaseActivity extends RxAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
-        receiveEvent();
     }
     protected abstract int getLayoutId();
-    protected abstract void receiveEvent();
     /**
      * 回调函数
      */

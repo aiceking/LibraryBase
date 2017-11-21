@@ -69,8 +69,5 @@ public class RxBus {
             hashMap.remove(context);
         }
     }
-    public void unregisterAll() {
-        //会将所有由mBus生成的Observable都置completed状态,后续的所有消息都收不到了
-        mBus.onComplete();
-    }
+
 }
