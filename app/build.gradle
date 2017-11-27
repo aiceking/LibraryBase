@@ -5,7 +5,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -61,6 +61,7 @@ dependencies {
     compile 'com.github.NoEndToLF:ListPopWindow:1.0.6'//popwindow
     compile 'com.github.NoEndToLF:LazyBaseFragment:1.0.1'//lazyFragment
     compile 'com.github.NoEndToLF:ImageVpShow:1.0.2'//图片浏览器
+    compile 'com.github.NoEndToLF:ToolAndStatusBar:1.0.1'//透明状态栏，沉浸式状态栏
     compile 'com.jakewharton:butterknife:8.8.1'//注解
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'//注解
 }
