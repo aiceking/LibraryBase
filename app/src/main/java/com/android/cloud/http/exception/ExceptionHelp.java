@@ -47,7 +47,7 @@ public class ExceptionHelp {
                 case BAD_GATEWAY:
                 case SERVICE_UNAVAILABLE:
                 default:
-                    ex.setDisPlayMessage("网络错误");  //均视为网络错误
+                    ex.setDisPlayMessage("服务器异常");  //均视为网络错误
                     break;
             }
             return ex;
