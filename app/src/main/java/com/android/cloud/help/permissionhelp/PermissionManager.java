@@ -16,7 +16,7 @@ import java.util.List;
  * Created by radio on 2017/11/15.
  */
 
-public class PermissionHelp {
+public class PermissionManager {
 
 public static void getPermission(final Activity activity,final PermissionType permissionType,final int PermissionRequestCode,final GetPermissionListener getPermissionListener){
     AndPermission.with(activity)

@@ -17,23 +17,23 @@ import io.reactivex.subjects.Subject;
  * Created by static on 2017/11/20/020.
  */
 
-public class RxBus {
-    private static RxBus rxBus;
+public class RxBusManager {
+    private static RxBusManager rxBusManager;
     private  Subject<Object> mBus;
     private HashMap<Context,List<Disposable>> hashMap;
-    private RxBus(){
+    private RxBusManager(){
         mBus = PublishSubject.create().toSerialized();
         hashMap=new HashMap<>();
     }
-    public static RxBus getInstance(){
-        if (rxBus==null){
-            synchronized (RxBus.class){
-                if (rxBus==null){
-                    rxBus=new RxBus();
+    public static RxBusManager getInstance(){
+        if (rxBusManager ==null){
+            synchronized (RxBusManager.class){
+                if (rxBusManager ==null){
+                    rxBusManager =new RxBusManager();
                 }
             }
         }
-        return rxBus;
+        return rxBusManager;
     }
     public void send(Object obj) {
         mBus.onNext(obj);

@@ -2,7 +2,6 @@ package com.android.cloud.http.uploadimghelp;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 
@@ -11,8 +10,7 @@ import com.android.cloud.help.LogHelp;
 import com.android.cloud.http.exception.ApiException;
 import com.android.cloud.http.exception.ExceptionHelp;
 import com.android.cloud.http.gsonhelp.GsonHelp;
-import com.android.cloud.http.retrofit.RetrofitHelp;
-import com.android.cloud.libraryinit.BaseLibraryInitHelp;
+import com.android.cloud.libraryinit.BaseLibraryManager;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
@@ -78,7 +76,7 @@ private Handler handler;
             RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
                     .addFormDataPart("file", file.getName(), RequestBody.create(MediaType.parse("multipart/form-data"), file))
                     .build();
-            Response response= BaseLibraryInitHelp.getInstance().getUpLoadImgService().UploadImages(upLoadImgUrl,requestBody).execute();
+            Response response= BaseLibraryManager.getInstance().getUpLoadImgService().UploadImages(upLoadImgUrl,requestBody).execute();
             if (response.isSuccessful()){
                 Type jsonType = new TypeToken<BaseResponseBean<String>>() {}.getType();
                 BaseResponseBean<String> uploadPicResponse = GsonHelp.getGson().fromJson(response.body().toString(), jsonType);

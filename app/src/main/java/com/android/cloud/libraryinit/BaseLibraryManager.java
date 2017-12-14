@@ -1,6 +1,7 @@
 package com.android.cloud.libraryinit;
 
 import android.content.Context;
+import android.support.annotation.ColorRes;
 
 import com.android.cloud.http.retrofit.RetrofitHelp;
 import com.android.cloud.http.uploadimghelp.UpLoadImgService;
@@ -8,13 +9,15 @@ import com.lzy.imagepicker.ImagePicker;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
+import es.dmoral.toasty.Toasty;
+
 
 /**
  * Created by radio on 2017/9/13.
  */
 
-public class BaseLibraryInitHelp<T> {
-private static BaseLibraryInitHelp oncreateDoingHelp;
+public class BaseLibraryManager<T> {
+private static BaseLibraryManager oncreateDoingHelp;
     private Context context;
     private boolean isDebug;
     private boolean isLog;
@@ -36,13 +39,13 @@ private static BaseLibraryInitHelp oncreateDoingHelp;
         upLoadImgService=RetrofitHelp.getInstance().getRetrofit().create(UpLoadImgService.class);
     }
     private UpLoadImgService upLoadImgService;
-    private BaseLibraryInitHelp(){
+    private BaseLibraryManager(){
     }
-    public static BaseLibraryInitHelp getInstance(){
+    public static BaseLibraryManager getInstance(){
         if (oncreateDoingHelp==null){
-            synchronized (BaseLibraryInitHelp.class){
+            synchronized (BaseLibraryManager.class){
                 if (oncreateDoingHelp==null){
-                    oncreateDoingHelp=new BaseLibraryInitHelp();
+                    oncreateDoingHelp=new BaseLibraryManager();
                 }
             }
         }
@@ -87,6 +90,13 @@ private static BaseLibraryInitHelp oncreateDoingHelp;
 //        imagePicker.setFocusHeight(800);  //裁剪框的高度。单位像素（圆形自动取宽高最小值）
 //        imagePicker.setOutPutX(1000);//保存文件的宽度。单位像素
 //        imagePicker.setOutPutY(1000);//保存文件的高度。单位像素
+    }
+    public void setToastManager(@ColorRes int successColor,@ColorRes int infoColor,@ColorRes int ErrorColor,@ColorRes int textColor){
+        Toasty.Config.getInstance().setSuccessColor(context.getResources().getColor(successColor))
+                .setErrorColor(context.getResources().getColor(ErrorColor))
+                .setInfoColor(context.getResources().getColor(infoColor))
+                .setTextSize(14)
+                .setTextColor(context.getResources().getColor(textColor)).apply();
     }
     public void setLogger(boolean isLog){
         this.isLog=isLog;

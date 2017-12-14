@@ -14,7 +14,7 @@ import java.util.concurrent.Executors;
  * Created by radio on 2017/9/2.
  */
 
-public class UpLoadImgsHelp {
+public class UpLoadImgsManager {
     private List<String> list_success;
     private List<String> list_upload;
     private ExecutorService imgUploadThreadPool;
@@ -22,13 +22,16 @@ public class UpLoadImgsHelp {
     private Handler handler;
     private int errorNum;
     private String upLoadImgUrl;
-    public UpLoadImgsHelp(String upLoadImgUrl){
+    private Activity upLoadActivity;
+    public UpLoadImgsManager(Activity activity,String upLoadImgUrl){
         this.upLoadImgUrl=upLoadImgUrl;
+        upLoadActivity=activity;
         imgUploadThreadPool= Executors.newFixedThreadPool(4);
         list_success=new ArrayList<>();
         handler=new Handler(){
             @Override
             public void handleMessage(Message msg) {
+                if (upLoadActivity.isFinishing())return;
                 super.handleMessage(msg);
                 String message=(String) msg.obj;
                 if (msg.what==0){
@@ -48,7 +51,7 @@ public class UpLoadImgsHelp {
             }
         };
     }
-    public  void uploadImages(Activity context, List<String> list_upload, UploadImagesListener uploadImagesListener){
+    public  void uploadImages( List<String> list_upload, UploadImagesListener uploadImagesListener){
         this.uploadImagesListener=uploadImagesListener;
         this.list_upload=list_upload;
         if (this.uploadImagesListener!=null){
@@ -59,7 +62,7 @@ public class UpLoadImgsHelp {
                 errorNum++;
                 continue;
             }
-            upLoadImage(context,path);
+            upLoadImage(upLoadActivity,path);
         }
     }
 public void upLoadImage(Activity context,String path){

@@ -4,7 +4,7 @@ import com.android.cloud.help.LogHelp;
 import com.android.cloud.http.HttpsCerHelp.HttpsCerHelp;
 import com.android.cloud.http.gsonhelp.GsonHelp;
 import com.android.cloud.api.urlhelp.UrlHelp;
-import com.android.cloud.libraryinit.BaseLibraryInitHelp;
+import com.android.cloud.libraryinit.BaseLibraryManager;
 import java.util.concurrent.TimeUnit;
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 import okhttp3.OkHttpClient;
@@ -39,11 +39,11 @@ public class RetrofitHelp {
     }
     public OkHttpClient initOkHttpClient() {
         OkHttpClient.Builder mBuilder ;
-        if (BaseLibraryInitHelp.getInstance().isHasCer()) {
+        if (BaseLibraryManager.getInstance().isHasCer()) {
             //  设置https证书
-            mBuilder = HttpsCerHelp.getClientBuilderByCer(BaseLibraryInitHelp.getInstance().getContext(), BaseLibraryInitHelp.getInstance().getCerNames());
+            mBuilder = HttpsCerHelp.getClientBuilderByCer(BaseLibraryManager.getInstance().getContext(), BaseLibraryManager.getInstance().getCerNames());
         }else{
-            mBuilder = HttpsCerHelp.getClientBuilderByCer(BaseLibraryInitHelp.getInstance().getContext(), new String[]{});
+            mBuilder = HttpsCerHelp.getClientBuilderByCer(BaseLibraryManager.getInstance().getContext(), new String[]{});
         }
         //开启Log
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {

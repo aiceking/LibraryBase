@@ -1,7 +1,7 @@
 package com.android.cloud.api.urlhelp;
 
 
-import com.android.cloud.libraryinit.BaseLibraryInitHelp;
+import com.android.cloud.libraryinit.BaseLibraryManager;
 
 /**
  * Created by radio on 2017/9/20.
@@ -9,10 +9,10 @@ import com.android.cloud.libraryinit.BaseLibraryInitHelp;
 
 public class UrlHelp {
     public static String getBaseUrl(){
-        if (BaseLibraryInitHelp.getInstance().isDebug()){
-            return BaseLibraryInitHelp.getInstance().getCeshiUrl();
+        if (BaseLibraryManager.getInstance().isDebug()){
+            return BaseLibraryManager.getInstance().getCeshiUrl();
         }else {
-            return BaseLibraryInitHelp.getInstance().getShengchanUrl();
+            return BaseLibraryManager.getInstance().getShengchanUrl();
         }
     }
 }
