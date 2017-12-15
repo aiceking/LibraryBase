@@ -6,5 +6,5 @@ package com.android.cloud.help.rxbushelp;
 
 public interface RxBusListener<T> {
     void onSuccess(RxBusModel<T> rxBusModel);
-    void onFailed(String message);
+    void onFailed(Exception e);
 }

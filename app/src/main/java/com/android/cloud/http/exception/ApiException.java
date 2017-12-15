@@ -6,10 +6,19 @@ package com.android.cloud.http.exception;
 
 public class ApiException extends Exception{
     private int code;
+    private Throwable throwable;
+
+    public Throwable getThrowable() {
+        return throwable;
+    }
+
+    public void setThrowable(Throwable throwable) {
+        this.throwable = throwable;
+    }
 
     private String disPlayMessage;
     public ApiException(Throwable throwable, int code) {
-        super(throwable);
+        this.throwable=throwable;
         this.code = code;
     }
     public ApiException(int code, String disPlayMessage) {

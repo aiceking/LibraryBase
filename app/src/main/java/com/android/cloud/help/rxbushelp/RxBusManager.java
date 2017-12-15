@@ -53,7 +53,7 @@ public class RxBusManager {
                         rxBusListener.onSuccess(rxBusModel);
                     }
                 }catch (Exception e){
-                    rxBusListener.onFailed(e.getMessage());
+                    rxBusListener.onFailed(e);
                 }
 
             }
