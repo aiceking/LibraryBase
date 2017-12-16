@@ -14,7 +14,7 @@ import io.reactivex.functions.Function;
 public class HttpResponseFunction<T> implements Function<Throwable,Observable<T>>{
     @Override
     public Observable<T> apply(@NonNull Throwable throwable) throws Exception {
-        LogHelp.showLog(throwable.getMessage());
+        LogHelp.showLog("Exception：",throwable.getMessage());
         return Observable.error(ExceptionHelp.getException(throwable));
     }
 }

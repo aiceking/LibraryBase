@@ -1,4 +1,4 @@
-package com.android.cloud.api.urlhelp;
+package com.android.cloud.help.urlhelp;
 
 
 import com.android.cloud.libraryinit.BaseLibraryManager;

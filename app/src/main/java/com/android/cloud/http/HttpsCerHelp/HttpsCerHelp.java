@@ -1,7 +1,6 @@
-package com.android.cloud.http.HttpsCerHelp;
+package com.android.cloud.http.httpscerhelp;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.io.InputStream;
 

@@ -19,7 +19,7 @@ public class ServerReponseFunction implements Function<BaseResponseBean,Object>{
         if (!baseResponseBean.isSuccess()){
             throw new ServerException(baseResponseBean.getStatus(), baseResponseBean.getMessage().toString());
         }
-        LogHelp.showJsonLog(GsonHelp.getGson().toJson(baseResponseBean));
+        LogHelp.showJsonLog("Json：",GsonHelp.getGson().toJson(baseResponseBean));
         return baseResponseBean;
     }
 }

@@ -1,7 +1,6 @@
 package com.android.cloud.base;
 import android.os.Bundle;
 
-import com.android.cloud.help.rxbushelp.RxBusManager;
 import com.android.cloud.http.httprequestlife.LifeCycleListener;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
@@ -29,7 +28,6 @@ public abstract  class BaseActivity extends RxAppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        RxBusManager.getInstance().unregister(this);
         if (mListener!=null){
         mListener.onDestroy();
         }

@@ -1,4 +1,4 @@
-package com.android.cloud.http.HttpsCerHelp;
+package com.android.cloud.http.httpscerhelp;
 
 import java.io.IOException;
 import java.io.InputStream;
