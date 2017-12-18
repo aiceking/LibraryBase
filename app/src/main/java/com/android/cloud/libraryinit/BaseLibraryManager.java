@@ -1,17 +1,10 @@
 package com.android.cloud.libraryinit;
 
 import android.content.Context;
-import android.support.annotation.ColorRes;
-
 import com.android.cloud.http.retrofit.RetrofitHelp;
 import com.android.cloud.http.uploadimghelp.UpLoadImgService;
-import com.lzy.imagepicker.ImagePicker;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
-
-import es.dmoral.toasty.Toasty;
-
-
 /**
  * Created by radio on 2017/9/13.
  */
@@ -77,26 +70,6 @@ private static BaseLibraryManager oncreateDoingHelp;
         RetrofitHelp.getInstance().initRetrofitAndNetApi();
         netService=  RetrofitHelp.getInstance().getRetrofit().create(service);
         setUpLoadImgService();
-    }
-    public void setImagePickerLoader(){
-        ImagePicker imagePicker = ImagePicker.getInstance();
-        imagePicker.setImageLoader(new GlideImageLoader());   //设置图片加载器
-        imagePicker.setShowCamera(true);  //显示拍照按钮
-        imagePicker.setCrop(false);        //允许裁剪（单选才有效）
-        imagePicker.setSaveRectangle(true); //是否按矩形区域保存
-        imagePicker.setSelectLimit(9);    //选中数量限制
-//        imagePicker.setStyle(CropImageView.Style.RECTANGLE);  //裁剪框的形状
-//        imagePicker.setFocusWidth(800);   //裁剪框的宽度。单位像素（圆形自动取宽高最小值）
-//        imagePicker.setFocusHeight(800);  //裁剪框的高度。单位像素（圆形自动取宽高最小值）
-//        imagePicker.setOutPutX(1000);//保存文件的宽度。单位像素
-//        imagePicker.setOutPutY(1000);//保存文件的高度。单位像素
-    }
-    public void setToastManager(@ColorRes int successColor,@ColorRes int infoColor,@ColorRes int ErrorColor,@ColorRes int textColor){
-        Toasty.Config.getInstance().setSuccessColor(context.getResources().getColor(successColor))
-                .setErrorColor(context.getResources().getColor(ErrorColor))
-                .setInfoColor(context.getResources().getColor(infoColor))
-                .setTextSize(14)
-                .setTextColor(context.getResources().getColor(textColor)).apply();
     }
     public void setLogger(boolean isLog){
         this.isLog=isLog;

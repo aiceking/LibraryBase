@@ -1,6 +1,6 @@
 package com.android.cloud.http.retrofit;
 
-import com.android.cloud.help.LogHelp;
+import com.android.cloud.help.LogUtil;
 import com.android.cloud.http.httpscerhelp.HttpsCerHelp;
 import com.android.cloud.http.gsonhelp.GsonHelp;
 import com.android.cloud.help.urlhelp.UrlHelp;
@@ -49,7 +49,7 @@ public class RetrofitHelp {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
             public void log(String message) {
-                LogHelp.showLog("okHttp：",message);
+                LogUtil.showLog("okHttp：",message);
             }
         });
         logging.setLevel(HttpLoggingInterceptor.Level.BASIC);

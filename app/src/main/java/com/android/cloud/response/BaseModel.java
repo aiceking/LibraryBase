@@ -1,4 +1,4 @@
-package com.android.cloud.api.responsebean;
+package com.android.cloud.response;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by radio on 2017/9/20.
  */
 
-public class BaseResponseBean<T> {
+public class BaseModel<T> {
     @SerializedName("status")
     private int status;
     private String message;

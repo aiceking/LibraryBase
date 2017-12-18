@@ -12,7 +12,7 @@ import java.util.Map;
  * Created by radio on 2017/9/21.
  */
 
-public class LogHelp {
+public class LogUtil {
 
     public static void showLog(String tag,String message){
         if (BaseLibraryManager.getInstance().isLog()){

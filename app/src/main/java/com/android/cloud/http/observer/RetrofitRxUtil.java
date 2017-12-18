@@ -12,7 +12,7 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * Created by radio on 2017/9/20.
  */
-public class RetrofitRxObservableHelp {
+public class RetrofitRxUtil {
     /**自动管理RxJava请求的生命周期*/
     public static Observable getObservable(Observable baseObservable, LifecycleTransformer lifecycleTransformer) {
         Observable observable = baseObservable

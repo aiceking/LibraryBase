@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import com.android.cloud.http.exception.ApiException;
 import com.android.cloud.http.httprequestlife.HttpRequestListener;
 import com.android.cloud.http.httprequestlife.HttpRequestManagerImpl;
-import com.android.cloud.api.responsebean.BaseResponseBean;
+import com.android.cloud.response.BaseModel;
 
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
@@ -15,7 +15,7 @@ import io.reactivex.disposables.Disposable;
  * Created by radio on 2017/9/20.
  */
 
-public abstract class RetrofitRxObserver<T> implements Observer<BaseResponseBean<T>>,HttpRequestListener{
+public abstract class RetrofitRxObserver<T> implements Observer<BaseModel<T>>,HttpRequestListener{
     private String Request_Tag;//请求标识
     public RetrofitRxObserver(){
 
@@ -32,7 +32,7 @@ public abstract class RetrofitRxObserver<T> implements Observer<BaseResponseBean
     }
 
     @Override
-    public void onNext(@NonNull BaseResponseBean<T> response) {
+    public void onNext(@NonNull BaseModel<T> response) {
         if (!TextUtils.isEmpty(Request_Tag)) {
             HttpRequestManagerImpl.getInstance().remove(Request_Tag);
         }
@@ -79,5 +79,5 @@ public abstract class RetrofitRxObserver<T> implements Observer<BaseResponseBean
      *
      * @author ZhongDaFeng
      */
-    protected abstract void onSuccess(BaseResponseBean<T> response);
+    protected abstract void onSuccess(BaseModel<T> response);
 }

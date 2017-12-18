@@ -5,8 +5,8 @@ import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 
-import com.android.cloud.api.responsebean.BaseResponseBean;
-import com.android.cloud.help.LogHelp;
+import com.android.cloud.response.BaseModel;
+import com.android.cloud.help.LogUtil;
 import com.android.cloud.http.exception.ApiException;
 import com.android.cloud.http.exception.ExceptionHelp;
 import com.android.cloud.http.gsonhelp.GsonHelp;
@@ -44,7 +44,7 @@ private Handler handler;
         try {
             File file=Luban.with(context).load(new File(path)).get(path);
             if (file!=null){
-                LogHelp.showLog("uploadimgFile==",file.getAbsolutePath());
+                LogUtil.showLog("uploadimgFile==",file.getAbsolutePath());
                 UpLoadImgBean uploadImgBean=postImageTongBuList(file);
                 sendMessage(uploadImgBean);
             }else{
@@ -78,11 +78,11 @@ private Handler handler;
                     .build();
             Response response= BaseLibraryManager.getInstance().getUpLoadImgService().UploadImages(upLoadImgUrl,requestBody).execute();
             if (response.isSuccessful()){
-                Type jsonType = new TypeToken<BaseResponseBean<String>>() {}.getType();
-                BaseResponseBean<String> uploadPicResponse = GsonHelp.getGson().fromJson(response.body().toString(), jsonType);
+                Type jsonType = new TypeToken<BaseModel<String>>() {}.getType();
+                BaseModel<String> uploadPicResponse = GsonHelp.getGson().fromJson(response.body().toString(), jsonType);
                 if (uploadPicResponse.isSuccess()){
                     uploadImgBean.setCode(1);
-                    LogHelp.showLog("uploadimgName=", uploadPicResponse.getValues());
+                    LogUtil.showLog("uploadimgName=", uploadPicResponse.getValues());
                     uploadImgBean.setMessage(uploadPicResponse.getValues());
                 }else{
                     uploadImgBean.setCode(0);
