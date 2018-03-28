@@ -5,6 +5,7 @@ import android.util.Log;
 import com.android.cloud.help.LogUtil;
 import com.android.cloud.http.exception.ServerException;
 import com.android.cloud.response.BaseModel;
+import com.android.cloud.response.BaseStatusModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -32,15 +33,13 @@ public class MyGsonResponseBodyConverter<T> implements Converter<ResponseBody, T
         try {
             LogUtil.showLog("response",response);
             //ResultResponse 只解析result字段
-            BaseModel resultResponse = gson.fromJson(response, BaseModel.class);
+            BaseStatusModel resultResponse = gson.fromJson(response, BaseStatusModel.class);
             if (resultResponse.isSuccess() ){
                 //result==0表示成功返回，继续用本来的Model类解析
                 return gson.fromJson(response, type);
             } else {
                 //ErrResponse 将msg解析为异常消息文本
-                Type jsonType = new TypeToken<BaseModel<String>>() {}.getType();
-                BaseModel<String> errResponse  = gson.fromJson(response, jsonType);
-                throw new ServerException(errResponse.getStatus(), errResponse.getMessage());
+                throw new ServerException(resultResponse.getStatus(), resultResponse.getMessage());
             }
         } finally {
             value.close();
