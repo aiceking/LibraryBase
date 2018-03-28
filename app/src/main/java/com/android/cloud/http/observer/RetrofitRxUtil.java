@@ -17,7 +17,7 @@ public class RetrofitRxUtil {
     public static Observable getObservable(Observable baseObservable, LifecycleTransformer lifecycleTransformer) {
         Observable observable = baseObservable
                 .map(new ServerReponseFunction())
-                .onErrorResumeNext(new HttpResponseFunction<>())
+                .onErrorResumeNext(new HttpResponseFunction<>(baseObservable))
                 .subscribeOn(Schedulers.io())
                 .compose(lifecycleTransformer)
                 .observeOn(AndroidSchedulers.mainThread());
@@ -27,7 +27,7 @@ public class RetrofitRxUtil {
     public static Observable getObservable(Observable baseObservable, LifecycleProvider<ActivityEvent> lifecycle, ActivityEvent event) {
         Observable observable = baseObservable
                 .map(new ServerReponseFunction())
-                .onErrorResumeNext(new HttpResponseFunction<>())
+                .onErrorResumeNext(new HttpResponseFunction<>(baseObservable))
                 .subscribeOn(Schedulers.io())
                 .compose(lifecycle.bindUntilEvent(event))
                 .observeOn(AndroidSchedulers.mainThread());
