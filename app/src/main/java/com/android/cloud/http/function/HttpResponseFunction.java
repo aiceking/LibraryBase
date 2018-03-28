@@ -11,17 +11,9 @@ import io.reactivex.functions.Function;
  */
 
 public class HttpResponseFunction<T> implements Function<Throwable,Observable<T>>{
-    private Observable baseObservable;
-    public HttpResponseFunction(Observable baseObservable){
-        this.baseObservable=baseObservable;
-    }
     @Override
     public Observable<T> apply(@NonNull Throwable throwable) throws Exception {
         LogUtil.showLog("Exception：",throwable.getMessage());
-        if (ExceptionHelp.getException(throwable).getDisPlayMessage().equals("数据格式异常")){
-            return baseObservable;
-        }else{
         return Observable.error(ExceptionHelp.getException(throwable));
-        }
     }
 }

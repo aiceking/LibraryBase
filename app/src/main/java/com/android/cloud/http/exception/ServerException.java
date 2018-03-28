@@ -4,7 +4,7 @@ package com.android.cloud.http.exception;
  * Created by radio on 2017/9/20.
  */
 
-public class ServerException extends Exception{
+public class ServerException extends RuntimeException{
     private int code;
     private String message;
     public ServerException(int code,String message){

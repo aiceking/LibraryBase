@@ -1,6 +1,7 @@
 package com.android.cloud.http.retrofit;
 
 import com.android.cloud.help.LogUtil;
+import com.android.cloud.http.gsonhelp.MyGsonConverterFactory;
 import com.android.cloud.http.httpscerhelp.HttpsCerHelp;
 import com.android.cloud.http.gsonhelp.GsonHelp;
 import com.android.cloud.help.urlhelp.UrlHelp;
@@ -33,7 +34,7 @@ public class RetrofitHelp {
          retrofit = new Retrofit.Builder()
                 .client(initOkHttpClient())
                 .baseUrl(UrlHelp.getBaseUrl())
-                .addConverterFactory(GsonConverterFactory.create(GsonHelp.getGson()))
+                .addConverterFactory(new MyGsonConverterFactory(GsonHelp.getGson()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
