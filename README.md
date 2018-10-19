@@ -14,7 +14,8 @@ Step 2. Add the dependency
 	dependencies {
 	        compile 'com.github.NoEndToLF:LibraryBase:1.6.4'
 	}
-# 使用：在Application的onCreate中初始化
+# 使用：
+## 在Application的onCreate中初始化（需要传入外部类，即你的API接口类 NetApiService.class）
 ``` java
 BaseLibraryManager<NetApiService> baseLibraryInitHelp= BaseLibraryManager.getInstance();
         //1--4顺序不能变
@@ -34,3 +35,37 @@ BaseLibraryManager<NetApiService> baseLibraryInitHelp= BaseLibraryManager.getIns
         baseLibraryInitHelp.setUpLoadImgService();/**图片上传*/
         baseLibraryInitHelp.setApiService(NetApiService.class);/**初始化Api*/
 ```
+## 调用(需结合Rxlifecycle才可使用)，建议把Rxlifecycle封装到BaseActivity和BaseFragment中，或者MVP结构的P层
+``` java
+//比如说这是某个接口
+ @FormUrlEncoded
+    @POST("***********")
+    Observable<BaseModel<SomeThingModel>> getSmoeThing(@FieldMap Map<String, String> request);
+    ```
+``` java
+//BaseActivity和BaseFragment中，或者MVP结构的P层就好，在Base层的onCreate方法中调用
+BaseLibraryManager<NetApiService>=BaseLibraryManager.getInstance();
+NetApiService netApiService=baseLibraryInitHelp.getNetService();
+ ```
+ ``` java
+ //调用某个接口
+  RetrofitRxUtil.getObservable(netApiService.getSmoeThing(map), bindLifecycle())
+                .subscribe(new RetrofitRxObserver<SomeThingModel>() {
+                    @Override
+                    protected void onStart(Disposable disposable) {
+                       //请求前需要做的事
+                    }
+                    @Override
+                    protected void onError(ApiException e) {
+                        //请求失败需要做的事
+                       
+                    }
+
+                    @Override
+                    protected void onSuccess(BaseModel<SomeThingModel> baseModel) {
+                        //请求成功需要做的事
+                    }
+
+                });
+		```
+ 
