@@ -123,12 +123,12 @@ NetApiService netApiService=baseLibraryInitHelp.getNetService();
                 });
 ```
 ## 请求失败结果对应如下:ApiException.getDisPlayMessage()
-接口不存在（错误码404）
-参数异常或服务器异常(错误码500)
-服务器异常（其他错误码）
-数据格式异常（BaseModel<SomeThingModel>对应的字段类型和服务器返回的不一样）
-请检查网络连接（无网络连接，就是没网）
-连接失败（与服务器连接失败）
-SSL证书无效（Https证书错误）
-未知错误
+### 接口不存在（错误码404）
+### 参数异常或服务器异常(错误码500)
+### 服务器异常（其他错误码）
+### 数据格式异常（BaseModel<SomeThingModel>对应的字段类型和服务器返回的不一样）
+### 请检查网络连接（无网络连接，就是没网）
+### 连接失败（与服务器连接失败）
+### SSL证书无效（Https证书错误）
+### 未知错误
  
