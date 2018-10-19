@@ -15,6 +15,60 @@ Step 2. Add the dependency
 	        compile 'com.github.NoEndToLF:LibraryBase:1.6.4'
 	}
 # 使用：
+## 本库自带的BaseModel的字段不一定适用于所有人，如下所示，如果字段对应和这里一致，直接远程引用就好，如果不不一致，建议下载本库，导入本地Library，然后自行修改BaseModel的字段
+``` java
+public class BaseModel<T> {
+    private int status;
+    private String message;
+    private T values;
+    public boolean isSuccess() {
+        return status==0?true:false;
+    }
+    public T getValues() {
+        return values;
+    }
+    public void setValues(T values) {
+        this.values = values;
+    }
+    public String getMessage() {
+        return message;
+    }
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    public int getStatus() {
+        return status;
+    }
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+}
+```
+``` java
+public class BaseStatusModel {
+    private int status;
+    private String message;
+    public boolean isSuccess() {
+        return status==0?true:false;
+    }
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+}
+```
 ## 在Application的onCreate中初始化（需要传入外部类，即你的API接口类 NetApiService.class）
 ``` java
 BaseLibraryManager<NetApiService> baseLibraryInitHelp= BaseLibraryManager.getInstance();
