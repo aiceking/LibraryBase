@@ -41,12 +41,12 @@ BaseLibraryManager<NetApiService> baseLibraryInitHelp= BaseLibraryManager.getIns
  @FormUrlEncoded
     @POST("***********")
     Observable<BaseModel<SomeThingModel>> getSmoeThing(@FieldMap Map<String, String> request);
-    ```
+```
 ``` java
 //BaseActivity和BaseFragment中，或者MVP结构的P层就好，在Base层的onCreate方法中调用
 BaseLibraryManager<NetApiService>=BaseLibraryManager.getInstance();
 NetApiService netApiService=baseLibraryInitHelp.getNetService();
- ```
+```
  ``` java
  //调用某个接口
   RetrofitRxUtil.getObservable(netApiService.getSmoeThing(map), bindLifecycle())
