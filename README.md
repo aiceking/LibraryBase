@@ -15,6 +15,7 @@ Step 2. Add the dependency
 	        compile 'com.github.NoEndToLF:LibraryBase:1.6.4'
 	}
 # 使用：在Application的onCreate中初始化
+``` java
 BaseLibraryManager<NetApiService> baseLibraryInitHelp= BaseLibraryManager.getInstance();
         //1--4顺序不能变
         //1,设置context
@@ -32,3 +33,4 @@ BaseLibraryManager<NetApiService> baseLibraryInitHelp= BaseLibraryManager.getIns
         //其他设置
         baseLibraryInitHelp.setUpLoadImgService();/**图片上传*/
         baseLibraryInitHelp.setApiService(NetApiService.class);/**初始化Api*/
+```
