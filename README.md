@@ -77,7 +77,7 @@ BaseLibraryManager<NetApiService> baseLibraryInitHelp= BaseLibraryManager.getIns
         baseLibraryInitHelp.setContext(context);
         //2,设置baseurl和证书
         baseLibraryInitHelp.setBaseUrl("测试站BaseUrl","正式站BaseUrl");
-//        baseLibraryInitHelp.setHttpsCer(false);/**是否有证书,默认为false*/
+        //baseLibraryInitHelp.setHttpsCer(false);/**是否有证书,默认为false*/
         baseLibraryInitHelp.setHttpsCer(true);
         /**测试站和生产站证书，放在assets目录下*/
         baseLibraryInitHelp.setCerNames(new String[]{"**.cer","**.cer"});
@@ -93,8 +93,8 @@ BaseLibraryManager<NetApiService> baseLibraryInitHelp= BaseLibraryManager.getIns
 ``` java
 //比如说这是某个接口
  @FormUrlEncoded
-    @POST("***********")
-    Observable<BaseModel<SomeThingModel>> getSmoeThing(@FieldMap Map<String, String> request);
+ @POST("***********")
+ Observable<BaseModel<SomeThingModel>> getSmoeThing(@FieldMap Map<String, String> request);
 ```
 ``` java
 //BaseActivity和BaseFragment中，或者MVP结构的P层就好，在Base层的onCreate方法中调用
