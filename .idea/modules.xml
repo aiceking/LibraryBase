@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LibraryBase.iml" filepath="$PROJECT_DIR$/LibraryBase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/LibraryBase-app.iml" filepath="$PROJECT_DIR$/app/LibraryBase-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myProject-LibraryBase.iml" filepath="$PROJECT_DIR$/myProject-LibraryBase.iml" />
     </modules>
   </component>
 </project>

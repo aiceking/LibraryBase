@@ -34,7 +34,8 @@ public class RetrofitHelp {
          retrofit = new Retrofit.Builder()
                 .client(initOkHttpClient())
                 .baseUrl(UrlHelp.getBaseUrl())
-                .addConverterFactory(new MyGsonConverterFactory(GsonHelp.getGson()))
+                .addConverterFactory( GsonConverterFactory.create())
+//                .addConverterFactory(new MyGsonConverterFactory(GsonHelp.getGson()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
